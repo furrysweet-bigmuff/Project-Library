@@ -44,10 +44,7 @@ function closeModal() {
 }
 
 function closeEditModal() {
-    overlay.classList.remove('active');
-    modal.classList.remove('active');
-    
-    setTimeout(clearModal, 500);
+    closeModal();
     setTimeout(function(){
         defaultButtons.classList.remove('hidden');
         editButtons.classList.add('hidden');
@@ -240,8 +237,6 @@ editBookBtn.addEventListener('click', editBook);
 bookCoverInput.addEventListener('change', displayCoverName);
 clearBtn.addEventListener('click', clearBooks);
 
-assignActions();
-
 let book1 = new Book(1, 'Rachel Hartman', 'Tess of the Road', '1032', 'Read', 'img/book1.jpeg');
 let book2 = new Book(2, 'Sophia Hill', 'The Hypocrite World', '937', 'Not Read', 'img/book2.jpg');
 let book3 = new Book(3, 'Tara Westover', 'Educated. A Memoir', '456', 'Read', 'img/book3.jpeg');
@@ -249,9 +244,5 @@ let book3 = new Book(3, 'Tara Westover', 'Educated. A Memoir', '456', 'Read', 'i
 addBookToLibrary(book1);
 addBookToLibrary(book2);
 addBookToLibrary(book3);
-
-updateBooksAmount();
-
-console.log(myLibrary)
 
 });
