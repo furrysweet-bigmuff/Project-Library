@@ -112,7 +112,6 @@ function addBookToLibrary(newBook) {
     bookId += 1;
 
     closeModal();
-    console.log(myLibrary)
 }
 
 function displayCoverName(event) {
@@ -246,3 +245,6 @@ addBookToLibrary(book2);
 addBookToLibrary(book3);
 
 });
+
+
+
