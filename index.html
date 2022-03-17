@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="img/logo.svg" alt="logo">
+        </header>
+        <main class="main-content">
+            <section>
+                <div class="books" id="books-section">
+                    <!-- <div class="book" data-book="1">
+                        <img src="img/book1.jpeg" alt="book" class="cover">
+                        <div class="author">Rachel Hartman</div>
+                        <div class="book-title">Tess of the Road</div>
+                        <div class="pages">1032 pages</div>
+                        <div class="read">Read <span class="change">change</span></div>
+                        <div class="book-action">
+                            <span class="edit">Edit</span>
+                            <span>/</span>
+                            <span class="delete">Delete</span>
+                        </div>
+                    </div>
+                    <div class="book" data-book="2">
+                        <img src="img/book2.jpg" alt="book" class="cover">
+                        <div class="author">Sophia Hill</div>
+                        <div class="book-title">The Hypocrite World</div>
+                        <div class="pages">1032 pages</div>
+                        <div class="read">Read <span class="change">change</span></div>
+                        <div class="book-action">
+                            <span class="edit">Edit</span>
+                            <span>/</span>
+                            <span class="delete">Delete</span>
+                        </div>
+                    </div> -->
+                    <!-- <div class="book">
+                        <img src="img/book3.jpeg" alt="book" class="cover">
+                        <div class="author">Tara Westover</div>
+                        <div class="book-title">Educated. A Memoir</div>
+                        <div class="pages">1032 pages</div>
+                        <div class="read">Read <span class="change"  >change</span></div>
+                        <div class="book-action">
+                            <span class="edit">Edit</span>
+                            <span>/</span>
+                            <span class="delete">Delete</span>
+                        </div>
+                    </div> -->
+                    <!-- <div class="book">
+                        <img src="img/book1.jpeg" alt="book" class="cover">
+                        <div class="author">Rachel Hartman</div>
+                        <div class="book-title">Tess of the Road</div>
+                        <div class="pages">1032 pages</div>
+                        <div class="read">Read <span class="change"  >change</span></div>
+                        <div class="book-action">
+                            <span class="edit">Edit</span>
+                            <span>/</span>
+                            <span class="delete">Delete</span>
+                        </div>
+                    </div>
+                    <div class="book">
+                        <img src="img/book2.jpg" alt="book" class="cover">
+                        <div class="author">Sophia Hill</div>
+                        <div class="book-title">The Hypocrite World</div>
+                        <div class="pages">1032 pages</div>
+                        <div class="read">Read <span class="change"  >change</span></div>
+                        <div class="book-action">
+                            <span class="edit">Edit</span>
+                            <span>/</span>
+                            <span class="delete">Delete</span>
+                        </div>
+                    </div>
+                    <div class="book">
+                        <img src="img/book3.jpeg" alt="book" class="cover">
+                        <div class="author">Tara Westover</div>
+                        <div class="book-title">Educated. A Memoir</div>
+                        <div class="pages">1032 pages</div>
+                        <div class="read">Read <span class="change" >change</span></div>
+                        <div class="book-action">
+                            <span class="edit">Edit</span>
+                            <span>/</span>
+                            <span class="delete">Delete</span>
+                        </div>
+                    </div> -->
+                </div>
+                <footer>
+                    <a href="https://github.com/furrysweet-bigmuff">
+                        <img src="img/GitHub-Mark-120px-plus.png" alt="github">
+                        <span>furrysweet-bigmuff</span>
+                    </a>
+                </footer>
+            </section>
+            <aside>
+                <div class="sticky">
+                    <div class="title">Action</div>
+                    <div class="buttons">
+                        <button class="main" id="openModal">Add new</button>
+                        <button class="main" id="clear">Clear</button>
+                    </div>
+                    <div class="title">Information</div>
+                    <div class="information">
+                        <div class="row">
+                            <span class="name">Books:</span>
+                            <span class="num" id="books_amount">3</span>
+                        </div>
+                        <div class="row">
+                            <span class="name">Completed:</span>
+                            <span class="num" id="books_completed">2</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+        <div class="title">Add new book</div>
+        <div class="row">
+            <label for="book_author">Author</label>
+            <input type="text" name="author" id="book_author">
+        </div>
+        <div class="row">
+            <label for="book_title">Title</label>
+            <input type="text" name="title" id="book_title">
+        </div>
+        <div class="row">
+            <label for="book_pages">Pages</label>
+            <input type="text" name="pages" id="book_pages">
+        </div>
+        <div class="wrap">
+            <div>
+                <label for="book_cover" class="file">Cover</label>
+                <input type="file" name="cover" id="book_cover" class="input-file">
+                <div id="file-name"></div>
+            </div>
+            <div class="radioboxes">
+                <span>Read?</span>
+                <div>
+                    <div class="column">
+                        <label for="radio" class="radio">Yes</label>
+                        <input type="radio" name="radio" checked value="Read" class="input-radio" data-radio="default">
+                    </div>
+                    <div class="column">
+                        <label for="name" class="radio">No</label>
+                        <input type="radio" name="radio" value="Not read" class="input-radio" data-radio="not-default">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons" id="default_buttons">
+            <button class="main" id="add">Add</button>
+            <button class="main" id="cancel">Cancel</button>
+        </div>
+        <div class="buttons hidden" id="edit_buttons">
+            <button class="main" id="edit" data-edit="">Edit</button>
+            <button class="main" id="cancel-edit">Cancel</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

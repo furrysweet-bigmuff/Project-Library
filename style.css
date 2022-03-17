@@ -1,0 +1,603 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+header {
+    position: fixed;
+    z-index: 3;
+    padding: 15px 140px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+header img {
+    width: 150px;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 500px;
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+section {
+    padding: 75px 0 0;
+    display: grid;
+    align-content: space-between;
+    background-color: #F2F2F2;
+}
+
+.books {
+    padding: 0 8%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+    grid-gap: 30px;
+}
+
+.book {
+    margin-bottom: 50px;
+    padding: 45px 50px;
+    width: 370px;
+    background-color: #F2F2F2;
+    border-radius: 15px;
+    transition: all 0.5s;
+}
+
+.book:hover {
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+}
+
+.book img {
+    margin-bottom: 40px;
+    width: 270px;
+    height: 430px;
+    border-radius: 15px;
+}
+
+.book .author,
+.book .pages {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.book .book-title {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.book .read {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.book .change {
+    margin-left: 5px;
+    color: #0090F8;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.book .book-action {
+    text-align: right;
+}
+
+.book .book-action span {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.book .book-action .edit,
+.book .book-action .delete {
+    cursor: pointer;
+}
+
+aside {
+    position: relative;
+    background-color: #575757;
+}
+
+aside .sticky {
+    position: sticky;
+    top: 80px;
+    left: 0;
+    padding: 100px 50px;
+}
+
+aside .title {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #fff;
+}
+
+button {
+    padding: 15px 25px;
+    border-radius: 15px;
+    border: 0;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #fff;
+    background-color: #0090F8;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+}
+
+button.main {
+    min-width: 130px;
+}
+
+aside .buttons {
+    margin-bottom: 50px;
+}
+
+aside .buttons button {
+    margin-right: 20px;
+}
+
+aside .buttons button:last-child {
+    margin-right: 0;
+}
+
+.information .row {
+    margin-bottom: 10px;
+}
+
+.information .name,
+.information .num {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #fff;
+}
+
+.information .num {
+    margin-left: 4px;
+    font-weight: 500;
+}
+
+footer {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+footer a {
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+footer span {
+    margin-left: 12px;
+    font-weight: 600;
+}
+
+footer img {
+    width: 40px;
+    height: 40px;
+}
+
+.overlay {
+    position: fixed;
+    z-index: 4;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: all 0.5s;
+    visibility: hidden;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    position: fixed;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    padding: 45px;
+    width: 500px;
+    border-radius: 30px;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.5s;
+    visibility: hidden;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal .title {
+    margin-bottom: 45px;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.modal label {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.modal input {
+    padding: 0 10px 5px;
+    display: block;
+    width: 100%;
+    border: 0;
+    border-bottom: 4px solid #000000;
+    transition: all 0.5s;
+}
+
+.modal input:focus-visible {
+    outline: none;
+    border-bottom: 4px solid #0090F8
+}
+
+.modal input.error {
+    border-bottom: 4px solid #a41c1c;
+}
+
+.modal .row {
+    margin-bottom: 30px;
+}
+
+.modal .wrap {
+    padding-top: 15px;
+}
+
+.modal .file {
+    margin-left: 0;
+    padding: 10px 25px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: #FFFFFF;
+    border: 4px solid #000000;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.modal .input-file {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+}
+
+#file-name {
+    font-size: 0.8rem;
+}
+
+.modal .wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal .radioboxes {
+    padding-top: 15px;
+    display: flex;
+}
+
+.modal .radioboxes > div {
+    display: flex;
+}
+
+.modal .radioboxes > span {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.modal .radio {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.modal .column {
+    position: relative;
+    margin-left: 25px;
+    width: 45px;
+    min-height: 120px;
+    text-align: center;
+}
+
+.modal .column .radio {
+    margin: 0;
+}
+
+.modal .input-radio {
+    width: 0;
+    height: 0;
+}
+
+.modal .input-radio:before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    display: block;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #C4C4C4;
+    transition: 0.5s all;
+    cursor: pointer;
+}
+
+.modal .input-radio:checked:before {
+    background-color: #0090F8;
+}
+
+.modal .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal .buttons .main {
+    font-size: 1.5rem;
+    min-width: 185px;
+    padding: 18px;
+}
+
+.modal .buttons.hidden {
+    display: none;
+}
+
+
+@media screen and (max-width: 1900px) {
+    .main-content {
+      padding-top: 70px;
+      grid-template-columns: 1fr 400px;
+    }
+    aside .sticky {
+        top: 70px;
+    }
+  }
+
+  @media screen and (max-width: 1800px) {
+    header {
+        padding: 10px 100px;
+    }
+    .books {
+        padding: 0 5%;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    .book {
+        padding: 30px 35px;
+        width: 300px;
+    }
+    .book img {
+        margin-bottom: 30px;
+        width: 228px;
+        height: 364px;
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    .main-content {
+        grid-template-columns: 1fr 360px;
+    }
+    .books {
+        padding: 0 5%;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .book {
+        margin-bottom: 40px;
+        padding: 20px 25px;
+        width: 250px;
+    }
+    .book img {
+        margin-bottom: 30px;
+        width: 200px;
+        height: 320px;
+    }
+    .book .author, .book .pages {
+        font-size: 0.9rem;
+    }
+    .book .book-title {
+        font-size: 1.1rem;
+    }
+    .book .book-action span {
+        font-size: 1rem;
+    }
+    .book .change {
+        font-size: 0.9rem;
+    }
+    aside .sticky {
+        padding: 80px 40px;
+    }
+    aside .title {
+        margin-bottom: 20px;
+        font-size: 1.6rem;
+    }
+    button.main {
+        min-width: 100px;
+    }
+    button {
+        font-size: 1.1rem;
+    }
+    footer {
+        height: 50px;
+    }
+    footer img {
+        width: 30px;
+        height: 30px;
+    }
+    footer span {
+        font-size: 0.9rem;
+    }
+    .modal {
+        padding: 35px;
+        width: 400px;
+    }
+    .modal .title {
+        margin-bottom: 35px;
+        font-size: 1.7rem;
+    }
+    .modal input {
+        border-bottom: 3px solid #000;
+    }
+
+    .modal input:focus-visible {
+        outline: none;
+        border-bottom: 3px solid #0090F8
+    }
+    
+    .modal input.error {
+        border-bottom: 3px solid #a41c1c;
+    }
+
+    .modal .column {
+        width: 35px;
+        min-height: 100px;
+    }
+    .modal .input-radio:before {
+        width: 35px;
+        height: 35px;
+    }
+    .modal .radioboxes > span {
+        font-size: 1.1rem;
+    }
+    .modal .file {
+        font-size: 1.1rem;
+        border: 3px solid #000;
+    }
+    .modal .buttons .main {
+        padding: 14px;
+        font-size: 1.2rem;
+        min-width: 150px;
+    }
+  }
+
+  @media screen and (max-width: 1270px) {
+    header {
+        padding: 10px 60px;
+    }
+    .main-content {
+        grid-template-columns: 1fr 320px;
+    }
+    section {
+        padding: 50px 0 0;
+    }
+    aside .sticky {
+        padding: 60px 25px;
+    }
+    aside .title {
+        font-size: 1.4rem;
+    }
+    aside .buttons button {
+        margin-right: 15px;
+    }
+    aside .buttons {
+        margin-bottom: 35px;
+    }
+    button.main {
+        min-width: 80px;
+    }
+    button {
+        font-size: 1rem;
+    }
+    .information .name, .information .num {
+        font-size: 1rem;
+    }
+    .books {
+        padding: 0 4%;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .book {
+        margin-bottom: 25px;
+        padding: 15px 20px;
+        width: 200px;
+    }
+    .book img {
+        margin-bottom: 15px;
+        width: 159px;
+        height: 246px;
+    }
+    .book .author, .book .pages {
+        font-size: 0.8rem;
+    }
+    .book .book-title {
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+    .book .change {
+        font-size: 0.8rem;
+    }
+    .book .read,
+    .book .book-action span {
+        font-size: 0.9rem;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .book {
+        width: 100%;
+        text-align: center;
+    }
+    .book .book-action {
+        text-align: center;
+    }
+    .main-content {
+        grid-template-columns: 1fr 260px;
+    }
+    aside .buttons button {
+        margin-bottom: 15px;
+    }
+  }
+
+  @media screen and (max-width: 570px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    aside .sticky {
+        position: relative;
+        padding: 30px 30px;
+        top: 0;
+    }
+    section {
+        order: 2;
+    }
+    aside {
+        order: 1;
+    }
+    aside .buttons {
+        margin-bottom: 15px;
+    }
+    .modal {
+        padding: 30px;
+        width: 90%;
+    }
+    .modal .title {
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+    }
+  }
