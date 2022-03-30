@@ -51,23 +51,42 @@ function closeEditModal() {
     }, 500);
 }
 
-function Book(bookId, author, title, pages, read, cover) {
-    this.id = bookId;
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read;
-    this.cover = cover;
+class Book {
+    constructor(options) {
+        this.bookId = options.bookId
+        this.author = options.author
+        this.title = options.title
+        this.pages = options.pages
+        this.read = options.read
+        this.cover = options.cover
+    }
+    change() {
+        if (this.read === 'Read') {
+            this.read = 'Not read';
+        } else {
+            this.read = 'Read';
+        }
+        updateBooksAmount();
+    }
 }
 
-Book.prototype.change = function() {
-    if (this.read === 'Read') {
-        this.read = 'Not read';
-    } else {
-        this.read = 'Read';
-    }
-    updateBooksAmount();
-}
+// function Book(bookId, author, title, pages, read, cover) {
+//     this.id = bookId;
+//     this.author = author;
+//     this.title = title;
+//     this.pages = pages;
+//     this.read = read;
+//     this.cover = cover;
+// }
+
+// Book.prototype.change = function() {
+//     if (this.read === 'Read') {
+//         this.read = 'Not read';
+//     } else {
+//         this.read = 'Read';
+//     }
+//     updateBooksAmount();
+// }
 
 function createBook() {
     document.getElementsByName('radio').forEach(radio => {
@@ -82,8 +101,16 @@ function createBook() {
         imageUrl = 'img/placeholder.png'
     }
 
-    let newBook = new Book(bookId, bookAuthorInput.value, bookTitleInput.value, bookPagesInput.value, bookReadValue, imageUrl);
-    
+    // let newBook = new Book(bookId, bookAuthorInput.value, bookTitleInput.value, bookPagesInput.value, bookReadValue, imageUrl);
+    let newBook = new Book({
+        bookId: bookId,
+        author: bookAuthorInput.value,
+        title: bookTitleInput.value,  
+        pages: bookPagesInput.value,
+        read: bookReadValue,
+        cover: imageUrl
+    })
+
     addBookToLibrary(newBook);
 
 }
@@ -92,7 +119,7 @@ function addBookToLibrary(newBook) {
 
     myLibrary.push(newBook)
 
-    book = '<div class="book" data-book="'+ newBook.id +'">'+
+    book = '<div class="book" data-book="'+ newBook.bookId +'">'+
     '<img src="' + newBook.cover + '" alt="book" class="cover">'+
     '<div class="author">'+ newBook.author +'</div>'+
     '<div class="book-title">'+ newBook.title +'</div>'+
@@ -147,8 +174,11 @@ function clearModal() {
 }
 
 function openEditModal() {
+    // console.log(this.closest('.book').getAttribute('data-book'))
     let currentId = this.closest('.book').getAttribute('data-book');
-    currentBook = myLibrary.find( ({ id }) => id == currentId );
+    // console.log(currentId)
+    currentBook = myLibrary.find( ({ bookId }) => bookId == currentId );
+    console.log(currentBook)
     bookAuthorInput.value = currentBook.author;
     bookTitleInput.value = currentBook.title;
     bookPagesInput.value = currentBook.pages;
@@ -185,7 +215,7 @@ function editBook() {
 
 function deleteBook() {
     let deleteId = this.closest('.book').dataset.book;
-    currentBook = myLibrary.find( ({ id }) => id == deleteId );
+    currentBook = myLibrary.find( ({ bookId }) => bookId == deleteId );
     myLibrary.splice(myLibrary.indexOf(currentBook,0), 1);
     this.closest('.book').remove();
     updateBooksAmount();
@@ -193,7 +223,7 @@ function deleteBook() {
 
 function changeReadStatus() {
     let changeId = this.closest('.book').dataset.book;
-    currentBook = myLibrary.find( ({ id }) => id == changeId );
+    currentBook = myLibrary.find( ({ bookId }) => bookId == changeId );
     currentBook.change();
     this.closest('.read').innerHTML = currentBook.read + '<span class="change">change</span>';
     assignActions();
@@ -236,14 +266,42 @@ editBookBtn.addEventListener('click', editBook);
 bookCoverInput.addEventListener('change', displayCoverName);
 clearBtn.addEventListener('click', clearBooks);
 
-let book1 = new Book(1, 'Rachel Hartman', 'Tess of the Road', '1032', 'Read', 'img/book1.jpeg');
-let book2 = new Book(2, 'Sophia Hill', 'The Hypocrite World', '937', 'Not Read', 'img/book2.jpg');
-let book3 = new Book(3, 'Tara Westover', 'Educated. A Memoir', '456', 'Read', 'img/book3.jpeg');
+// let book1 = new Book(1, 'Rachel Hartman', 'Tess of the Road', '1032', 'Read', 'img/book1.jpeg');
+// let book2 = new Book(2, 'Sophia Hill', 'The Hypocrite World', '937', 'Not Read', 'img/book2.jpg');
+// let book3 = new Book(3, 'Tara Westover', 'Educated. A Memoir', '456', 'Read', 'img/book3.jpeg');
+
+
+let book1 = new Book({
+    bookId: 1,
+    author: 'Rachel Hartman',
+    title: 'Tess of the Road',  
+    pages: '1032',
+    read: 'Read',
+    cover: 'img/book1.jpeg'
+});
+
+let book2 = new Book({
+    bookId: 2,
+    author: 'Sophia Hill',
+    title: 'The Hypocrite World',  
+    pages: '937',
+    read: 'Not Read',
+    cover: 'img/book2.jpg'
+});
+
+let book3 = new Book({
+    bookId: 3,
+    author: 'Tara Westover',
+    title: 'Educated. A Memoir',  
+    pages: '456',
+    read: 'Read',
+    cover: 'img/book3.jpeg'
+});
 
 addBookToLibrary(book1);
 addBookToLibrary(book2);
 addBookToLibrary(book3);
-
+console.log(myLibrary)
 });
 
 
